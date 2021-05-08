@@ -10,7 +10,7 @@ find_package(device  REQUIRED)
 find_package(stateos REQUIRED)
 
 add_executable(test
-	src/main.c
+	src/main.cpp
 )
 
 target_include_directories(test
@@ -22,7 +22,7 @@ target_link_libraries(test
 	PRIVATE
 	startup
 	device::nosys
-	stateos::kernel
+	stateos::stdc++
 )
 
 setup_target(test)

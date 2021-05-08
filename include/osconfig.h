@@ -2,7 +2,7 @@
 
     @file    StateOS: osconfig.h
     @author  Rajmund Szymanski
-    @date    24.01.2018
+    @date    03.02.2021
     @brief   StateOS config file for STM32F4 uC.
 
  ******************************************************************************
@@ -70,15 +70,35 @@
 // ----------------------------
 // default task stack size in bytes
 // default value: 256
-#define OS_STACK_SIZE       256
+#define OS_STACK_SIZE      1024
 
 // ----------------------------
 // idle task stack size in bytes
 // default value: 128
-#define OS_IDLE_STACK       128
+#define OS_IDLE_STACK       256
+
+// ----------------------------
+// task stack guard size in bytes (if MPU is present, indicates the size of the MPU region)
+// DEBUG => the default value depends on the port settings
+// otherwise => default value: 0
+#define OS_GUARD_SIZE        32
 
 // ----------------------------
 // bit size of system timer counter
 // available values: 16, 32, 64
 // default value: 32
 #define OS_TIMER_SIZE        32
+
+// ----------------------------
+// system procedure for starting the task
+// available values: 0, 1
+// 0 => task function will be executed into an infinite system-implemented loop
+// 1 => while return from the task function, tsk_exit will be executed
+// default value: 0
+#define OS_TASK_EXIT          1
+
+// ----------------------------
+// indicates the use of atomic functions
+// available values: 0, 1
+// default value: 0
+#define OS_ATOMICS            0
