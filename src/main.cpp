@@ -3,24 +3,28 @@
 #include <mutex>
 #include <chrono>
 
+using namespace std::chrono_literals;
+
+thread_local auto delay = 1000ms;
+
 void test()
 {
 	std::once_flag flg;
 	std::jthread jt([&](std::stop_token st)
 	{
-		do std::call_once(flg, []{});
+		do std::call_once(flg, []{ delay = 1ms; });
 		while (!st.stop_requested());
 	});
 }
 
 int main()
 {
-	using namespace std::chrono_literals;
 	device::Led led;
+	delay = 100ms;
 	for (;;)
 	{
 		test();
-		std::this_thread::sleep_for(100ms);
+		std::this_thread::sleep_for(delay);
 		std::thread([&]{ led.tick(); }).detach();
 	}
 }
