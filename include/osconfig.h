@@ -95,7 +95,7 @@
 // 0 => task function will be executed into an infinite system-implemented loop
 // 1 => while return from the task function, tsk_exit will be executed
 // default value: 0
-#define OS_TASK_EXIT          1
+#define OS_TASK_EXIT          0
 
 // ----------------------------
 // indicates the use of atomic functions
