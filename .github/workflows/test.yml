@@ -21,9 +21,9 @@ jobs:
         sudo apt-get -y -qq update
         sudo apt-get -y -qq install cmake ninja-build
     - name: install arm-none-eabi-gcc
-      uses: fiam/arm-none-eabi-gcc@v1
+      uses: dlech/arm-none-eabi-gcc@v1
       with:
-        release: '10-2020-q4'
+        release: '11.2-2022.02'
     - name: check arm-none-eabi-gcc version
       run: arm-none-eabi-gcc -v
     - name: make test
